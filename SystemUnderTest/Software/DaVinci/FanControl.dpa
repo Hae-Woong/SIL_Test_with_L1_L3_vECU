@@ -32,7 +32,7 @@
         <Source>.\Appl\Source</Source>
         <ServiceComponents>.\Config\ServiceComponents</ServiceComponents>
         <Logs>.\Log</Logs>
-        <SIP>..\VTT.SIP.ASR4.R29</SIP>
+        <SIP>D:\__action-runner_FanControl\VTT.SIP.ASR4.R29</SIP>
         <StartMenu></StartMenu>
         <ApplicationComponentFolders>
             <ApplicationComponentFolder>.\Config\ApplicationComponents</ApplicationComponentFolder>
