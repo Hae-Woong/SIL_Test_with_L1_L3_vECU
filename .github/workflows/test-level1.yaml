@@ -118,12 +118,16 @@ jobs:
           get-childitem . -Filter *.vtestreport | foreach {
             & "$env:TestReportViewer_InstallDir\ReportViewerCli.exe" -r $_ -xu
           }
+      - name: Prepare test results for test-reporter
+        run: |
+          mkdir test-results-for-reporter
+          cp ./simulation/TestReports/*_xunit.xml test-results-for-reporter/
 
       - name: Display test results
         uses: dorny/test-reporter@v1.9.1
         with:
           name: CANoe Test results                       # Name of the check run which will be created
-          path: "./simulation/TestReports/*_xunit.xml"   # Path to test results
+          path: "test-results-for-reporter/*.xml"        # Path to test results
           reporter: java-junit                           # Format of test results
           fail-on-error: 'false'                         # Don't mark as failing job if test
 
