@@ -120,7 +120,7 @@ jobs:
           }
 
  # display the test results using the dorny/test-reporter action
-      - name: Display test results
+      - name: Display L3 test results
         uses: dorny/test-reporter@v1.9.1
         with:
           name: L3 Test results                          # Name of the check run which will be created
