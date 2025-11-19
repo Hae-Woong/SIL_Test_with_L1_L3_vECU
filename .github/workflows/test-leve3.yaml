@@ -34,6 +34,13 @@ jobs:
       - name: Run vVIRTUALtarget
         if: steps.cache-sut.outputs.cache-hit != 'true'
         run: |
+          &"$env:vVIRTUALtarget_InstallDir\vttproj2vttmake" -i ./SystemUnderTest/L3_Integration/FanControl.vttproj -o ./SystemUnderTest/L3_Integration/FanControl.vttmake;
+          if(-Not $?)
+          {
+            Write-Host "vttproj2vttmake step failed." -ForegroundColor red
+            Exit -1
+          } 
+
           &"$env:vVIRTUALtarget_InstallDir\VttMake.exe" make ./SystemUnderTest/L3_Integration/FanControl.vttmake;
           if(-Not $?)
           {
@@ -107,7 +114,7 @@ jobs:
     name: Display test report
     if: ${{ !cancelled() }}
     needs: run-tests-simulation
-    runs-on: lvl3
+    runs-on: lvl1
     steps:
       - name: Convert all test reports to XUnit format
         working-directory: ./simulation/TestReports/
@@ -118,13 +125,15 @@ jobs:
           get-childitem . -Filter *.vtestreport | foreach {
             & "$env:TestReportViewer_InstallDir\ReportViewerCli.exe" -r $_ -xu
           }
+      - name: Prepare test results for test-reporter
+        run: |
+          mkdir test-results-for-reporter
+          mv ./simulation/TestReports/*_xunit.xml test-results-for-reporter/
 
       - name: Display test results
         uses: dorny/test-reporter@v1.9.1
         with:
-          name: Test results                             # Name of the check run which will be created
-          path: "./simulation/TestReports/*_xunit.xml"   # Path to test results
+          name: CANoe Test results                       # Name of the check run which will be created
+          path: "test-results-for-reporter/*.xml"        # Path to test results
           reporter: java-junit                           # Format of test results
           fail-on-error: 'false'                         # Don't mark as failing job if test
-
-
