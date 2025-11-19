@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<BuildSpecification xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="6.1">
+<BuildSpecification xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="6.4">
   <Settings>
     <ProjectName>FanControl</ProjectName>
   </Settings>
@@ -25,13 +25,37 @@
       </ComM>
       <Diagnostics />
       <EcuM>
-        <RunMinDuration>INF</RunMinDuration>
+        <RunMinDuration>5</RunMinDuration>
         <DefaultShutdownTarget>Sleep</DefaultShutdownTarget>
       </EcuM>
       <ServiceMappings>
         <ServiceMapping ServiceInterfaceType="DiagnosticMonitor">
           <Port>ECU_Composition::CpApController::DiagnosticMonitor_P_DTC_0x700006</Port>
           <Value>DTC_0x700006</Value>
+        </ServiceMapping>
+        <ServiceMapping ServiceInterfaceType="DiagnosticMonitor">
+          <Port>ECU_Composition::CpApController::Event_Electrical_Fault_Fan_Motor_Control_Circuit_Open</Port>
+          <Value>DTC_0x000013</Value>
+        </ServiceMapping>
+        <ServiceMapping ServiceInterfaceType="DiagnosticMonitor">
+          <Port>ECU_Composition::CpApController::Event_Electrical_Fault_Fan_Motor_Control_Circuit_Short</Port>
+          <Value>DTC_0x000012</Value>
+        </ServiceMapping>
+        <ServiceMapping ServiceInterfaceType="DiagnosticMonitor">
+          <Port>ECU_Composition::CpApController::Event_Mechanical_Fault_Unexpected_High_Current</Port>
+          <Value>DTC_0x000017</Value>
+        </ServiceMapping>
+        <ServiceMapping ServiceInterfaceType="DiagnosticMonitor">
+          <Port>ECU_Composition::CpApController::Event_Mechanical_Fault_Unexpected_Low_Current</Port>
+          <Value>DTC_0x000016</Value>
+        </ServiceMapping>
+        <ServiceMapping ServiceInterfaceType="OperationCycle">
+          <Port>ECU_Composition::CpApController::OpCycle_OBD_driving_cycle</Port>
+          <Value>OBD_driving_cycle</Value>
+        </ServiceMapping>
+        <ServiceMapping ServiceInterfaceType="ComM_UserRequest">
+          <Port>ECU_Composition::CpApController::PpComMUserRequestCtApController</Port>
+          <Value>PpComMUserRequestCtApController</Value>
         </ServiceMapping>
       </ServiceMappings>
       <TaskMappings>
@@ -72,10 +96,10 @@
       <SourceFiles>
         <File>..\Software\Source\CtApController.c</File>
         <File>..\Software\Source\CtCddIoHwAb.c</File>
-        <File>D:\__action-runner_FanControl\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation\vstdlib.c</File>
+        <File>..\Software\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation\vstdlib.c</File>
       </SourceFiles>
       <IncludeFolders>
-        <IncludeFolder Configuration="All">D:\__action-runner_FanControl\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation</IncludeFolder>
+        <IncludeFolder Configuration="All">..\Software\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation</IncludeFolder>
         <IncludeFolder Configuration="All">FanControlECU\Appl\Include</IncludeFolder>
       </IncludeFolders>
       <PreprocessorDefinitions>
