@@ -47,7 +47,7 @@
           <SourceFiles z:Id="26" z:Size="3">
             <BasedFileName z:Id="27">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Software\Source\CtApController.c" /&gt;</BasedFileName>
             <BasedFileName z:Id="28">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Software\Source\CtCddIoHwAb.c" /&gt;</BasedFileName>
-            <BasedFileName z:Id="29">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Software\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation\vstdlib.c" /&gt;</BasedFileName>
+            <BasedFileName z:Id="29">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\..\__action-runner_FanControl\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation\vstdlib.c" /&gt;</BasedFileName>
           </SourceFiles>
           <SourceFolders z:Id="30" z:Size="3">
             <PersistentString z:Id="31">SWC</PersistentString>
@@ -72,8 +72,8 @@
             </Content>
           </TaskSet>
           <UserDefinedIncludeFolders z:Id="42" z:Size="2">
-            <BasedFileName z:Id="43">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Software\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation" /&gt;</BasedFileName>
-            <BasedFileName z:Id="44">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name=".\FanControlECU\Appl\Include" /&gt;</BasedFileName>
+            <BasedFileName z:Id="43">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name=".\FanControlECU\Appl\Include" /&gt;</BasedFileName>
+            <BasedFileName z:Id="44">&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\..\__action-runner_FanControl\VTT.SIP.ASR4.R29\Components\VStdLib\Implementation" /&gt;</BasedFileName>
           </UserDefinedIncludeFolders>
           <UserDefinedIncludeFoldersBuildConfiguration z:Id="45" z:Size="2">
             <BuildConfigurations>All</BuildConfigurations>
