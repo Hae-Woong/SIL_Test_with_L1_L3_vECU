@@ -116,16 +116,17 @@ jobs:
           TestReportViewer_InstallDir: 'C:\Program Files\Vector CANoe Server Edition 19\Exec64'
         run: |
           get-childitem . -Filter *.vtestreport | foreach {
-            & "$env:TestReportViewer_InstallDir\ReportViewerCli.exe" -r $_ -xu
+            $reportName = "$($_.BaseName)_L3_xunit.xml"
+            & "$env:TestReportViewer_InstallDir\ReportViewerCli.exe" -r $_ -xu -o $reportName
           }
 
  # display the test results using the dorny/test-reporter action
       - name: Display L3 test results
         uses: dorny/test-reporter@v1.9.1
         with:
-          name: L3 Test results                          # Name of the check run which will be created
-          path: "./simulation/TestReports/*_xunit.xml"   # Path to test results
-          reporter: java-junit                           # Format of test results
-          fail-on-error: false                           # Don't mark as failing job if test report contain
+          name: L3 Test results                             # Name of the check run which will be created
+          path: "./simulation/TestReports/*_L3_xunit.xml"   # Path to test results
+          reporter: java-junit                              # Format of test results
+          fail-on-error: false                              # Don't mark as failing job if test report contain
 
 #
