@@ -109,8 +109,8 @@ jobs:
     needs: run-tests-simulation
     runs-on: lvl1
     strategy:
-    matrix:
-      TESTNAME: [tu_FanControl, tu_FanControlFaults]
+      matrix:
+        TESTNAME: [tu_FanControl, tu_FanControlFaults]
     steps:
       - name: Download test results artifact
         uses: actions/download-artifact@v4
