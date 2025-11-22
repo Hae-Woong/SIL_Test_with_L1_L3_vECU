@@ -91,7 +91,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: Test Reports ${{ matrix.TESTNAME }}
+          name: test-results-lvl1
           path: |
             ./simulation/TestReports/
           retention-days: 7
@@ -109,6 +109,11 @@ jobs:
     needs: run-tests-simulation
     runs-on: lvl1
     steps:
+      - name: Download test results artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: test-results-lvl1
+
       - name: Convert all test reports to XUnit format
         working-directory: ./simulation/TestReports/
         shell: pwsh
