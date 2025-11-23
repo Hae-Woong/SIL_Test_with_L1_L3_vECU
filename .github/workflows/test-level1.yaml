@@ -109,6 +109,16 @@ jobs:
     needs: run-tests-simulation
     runs-on: lvl1
     steps:
+    
+    - name: Clean previous L1 workspace
+      shell: pwsh
+      run: |
+        if (Test-Path "./simulation/TestReports") {
+          Write-Host "Cleaning ./simulation/TestReports"
+          Remove-Item "./simulation/TestReports" -Recurse -Force
+        }
+        New-Item -ItemType Directory -Path "./simulation/TestReports" | Out-Null
+
     - uses: actions/download-artifact@v4
       with:
         pattern: "Test Reports * - lvl1"   
@@ -149,7 +159,7 @@ jobs:
       with:
         name: L1 Test results                             # Name of the check run which will be created
         path: "./simulation/TestReports/*_L1_xunit.xml"   # Path to test results
-        reporter: java-junit                              # Format of test results
+        reporter: XUnit                              # Format of test results
         fail-on-error: false                              # Don't mark as failing job if test
 
 
