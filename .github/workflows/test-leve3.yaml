@@ -111,7 +111,7 @@ jobs:
     runs-on: lvl3
     steps:
 
-      - name: Clean previous L1 workspace
+      - name: Clean previous L3 workspace
         shell: pwsh
         run: |
           if (Test-Path "./simulation/TestReports") {
@@ -155,8 +155,9 @@ jobs:
       
       - name: Display L3 test results
         uses: dorny/test-reporter@v1.9.1
+        if: always()
         with:
           name: L3 Test results
           path: "./simulation/TestReports/*_L3_xunit.xml"
-          reporter: XUnit
+          reporter: java-junit
           fail-on-error: false
