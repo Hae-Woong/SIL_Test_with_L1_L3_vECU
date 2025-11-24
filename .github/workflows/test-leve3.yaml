@@ -23,12 +23,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4    
 
+      - name: Fix safe directory
+        shell: pwsh
+        run: |
+          git config --global --add safe.directory $env:GITHUB_WORKSPACE
+          git submodule foreach --recursive "git config --global --add safe.directory $toplevel"
+
       - name: Fix safe directory for Git
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"      
 
       - name: Cache SUT
         id: cache-sut
+        continue-on-error: true  
         uses: actions/cache@v4  
         with:
           path: |
